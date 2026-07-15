@@ -8,16 +8,9 @@ class Solution {
         int op=0;
         Arrays.sort(g);
         Arrays.sort(s);
-        while(i<=n1 || j<=n2)
+        while(i<=n1 && j<=n2)
         {
-            if(i>n1 )
-            {
-                break;
-            }
-               if(j>n2 )
-            {
-                break;
-            }
+   
            if(s[j]>=g[i])
            {
              op+=1;
