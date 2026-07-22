@@ -18,22 +18,24 @@ class Solution {
         {
               demo[i]+=i;
         }
-        int dp[]=new int[demo.length];
-        Arrays.fill(dp,-1);
-        dp[0]=demo[0];
-        int neg=0;
+      
+       
+        int prev1=demo[0];
+        int prev2=0;
         int max1=0;
         for(int i=1;i<demo.length;i++)
         {
             int pick=demo[i];
             if(i>1)
             {
-                pick+=dp[i-2];
+                pick+=prev2;
             }
-            int notpick=0+dp[i-1];
-            dp[i]=Math.max(pick,notpick);
+            int notpick=0+prev1;
+            int curr=Math.max(pick,notpick);
+            prev2=prev1;
+            prev1=curr;
         }
-        return dp[dp.length-1];
+        return prev1;
 
     }
     
