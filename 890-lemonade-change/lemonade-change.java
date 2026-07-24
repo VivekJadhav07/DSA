@@ -34,7 +34,7 @@ class Solution {
             five-=3;
             twen+=1;
            }
-           if(five<0 || 10<0) return false;
+           if(five<0 || ten<0) return false;
         }
              
        }
