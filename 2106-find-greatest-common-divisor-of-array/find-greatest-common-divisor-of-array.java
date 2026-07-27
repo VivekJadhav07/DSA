@@ -8,7 +8,7 @@ class Solution {
         a=Math.min(a,i);
         b=Math.max(b,i);
       }
-      while(a!=0 && b!=0)
+      while(a>0 && b>0)
       {
         if(a>b)
         {
