@@ -21,12 +21,7 @@ class Solution {
 
         }
 
-        if(fun(root)==-1)
-        {
-            return false;
-        }else{
-            return true;
-        }
+      return fun(root) !=-1;
       
         
     }
