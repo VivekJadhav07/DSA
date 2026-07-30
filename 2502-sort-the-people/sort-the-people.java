@@ -10,7 +10,8 @@ class Solution {
         int k=0;
         for(int i=names.length-1;i>=0;i--)
         {
-            names[k++]=map.get(heights[i]);
+            names[k]=map.get(heights[i]);
+            k+=1;
         }
         return names;
         
