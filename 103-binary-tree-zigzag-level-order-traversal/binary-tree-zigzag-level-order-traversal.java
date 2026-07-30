@@ -22,7 +22,7 @@ class Solution {
         return result;
      }
         deque.offer(root);
-        int k=1;
+        boolean flag=false;
         while( !deque.isEmpty() )
         {
             ArrayList<Integer> list1=new ArrayList<>();
@@ -37,11 +37,12 @@ class Solution {
                 
                
             }
-              k+=1;
-              if(k%2!=0)
+        
+              if(flag)
               {
             Collections.reverse(list1);
               }
+                    flag=!flag;
             result.add(list1);
         }
        return result;
