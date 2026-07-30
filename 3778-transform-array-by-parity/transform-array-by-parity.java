@@ -15,7 +15,7 @@ class Solution {
         {
             nums[i]=0;
         }
-         for(int i=even;i<nums.length;i++)
+         for(int i=even;i<even+odd;i++)
         {
             nums[i]=1;
         }
