@@ -14,22 +14,32 @@
  * }
  */
 class Solution {
+    public int k;
+    public int result;
     public int kthSmallest(TreeNode root, int k) {
-        ArrayList<Integer> list=new ArrayList<Integer>();
-
-           fun(root,list);
-           return list.get(k-1);
+        this.k=k;
+        this.result=-1;
+      
+           fun(root);
+           return result;
         
     }
-    public void fun(TreeNode root,ArrayList<Integer> list)
+    public void fun(TreeNode root) 
     {
          if(root==null)
          {
             return;
          }
-         if(root.left!=null) fun(root.left,list);
-         list.add(root.val);
-        if(root.right!=null) fun(root.right,list);
+           
+         if(root.left!=null) fun(root.left);
+         
+         if(--k==0)
+         { 
+           result=root.val;
+            return;
+         }
+       
+        if(root.right!=null) fun(root.right);
 
 
 
