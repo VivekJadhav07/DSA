@@ -18,7 +18,6 @@ class Solution {
         ArrayList<Integer> list=new ArrayList<Integer>();
 
            fun(root,list);
-           Collections.sort(list);
            return list.get(k-1);
         
     }
