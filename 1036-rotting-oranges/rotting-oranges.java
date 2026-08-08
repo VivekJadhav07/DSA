@@ -3,6 +3,7 @@ class Solution {
         int m=grid.length;
         int n=grid[0].length;
         int fresh=0;
+        Deque< int[]> deque=new ArrayDeque<>();
         for(int i=0;i<m;i++)
         {
             for(int j=0;j<n;j++)
@@ -11,21 +12,15 @@ class Solution {
                 {
                    fresh+=1; 
                 }
-            }
-        }
-       
-        Deque< int[]> deque=new ArrayDeque<>();
-       
-             for(int i=0;i<m;i++)
-        {
-            for(int j=0;j<n;j++)
-            {
-                if(grid[i][j]==2)
+                 if(grid[i][j]==2)
                 {
                    deque.offer(new int[]{i,j});
                 }
             }
         }
+       
+        
+    
         int []dr={-1,0,1,0};
         int []dc={0,1,0,-1};
          int time=0;
@@ -50,6 +45,7 @@ class Solution {
               )
               {
                 rotten=true;
+                fresh-=1;
                deque.offer(new int[]{rc,cc});
                 grid[rc][cc]=2;
               }
@@ -64,16 +60,9 @@ class Solution {
            
          
         }
-        int count=0;
-                for(int i=0;i<m;i++)
+        if(fresh>0)
         {
-            for(int j=0;j<n;j++)
-            {
-                if(grid[i][j]==1)
-                {
-                   return -1;
-                }
-            }
+            return -1;
         }
        
       
