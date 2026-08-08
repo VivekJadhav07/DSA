@@ -1,6 +1,6 @@
 class Solution {
     public int longestPalindromeSubseq(String s) {
-       String s1=new StringBuilder(s).reverse().toString();
+     
 
        int dp[][]=new int[s.length()+1][s.length()+1];
 
@@ -17,7 +17,7 @@ class Solution {
         for(int j=1;j<dp[0].length;j++)
         { 
            char ch1=s.charAt(i-1);
-           char ch2=s1.charAt(j-1);
+           char ch2=s.charAt(s.length()-j);
            if(ch1==ch2)
            {
             dp[i][j]=1+dp[i-1][j-1];
