@@ -25,7 +25,7 @@ class Solution {
     {
      
        visited[i]=true;
-       for(int k=0;k<isConnected[0].length;k++)
+       for(int k=0;k<isConnected.length;k++)
        {
         if(!visited[k] && isConnected[i][k]==1) 
         {    
