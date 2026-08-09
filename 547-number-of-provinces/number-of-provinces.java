@@ -1,55 +1,41 @@
 class Solution {
     public int findCircleNum(int[][] isConnected) {
-     ArrayList<ArrayList<Integer>> adj=new ArrayList<>();
-     for(int i=0;i<isConnected.length;i++)
-     {
-        adj.add(new ArrayList<Integer>());
-     }
-     for(int i=0;i<isConnected.length;i++)
-     {
-        for(int j=0;j<isConnected[i].length;j++)
-        {
-            if(isConnected[i][j]==1 && i!=j)
-            {
-            adj.get(i).add(j);
-            adj.get(j).add(i);
-            }
-        }
-     }
-     Deque<Integer> queue=new ArrayDeque<>();
-
-     int count=0;
-     boolean visited[]=new boolean[adj.size()];
-     for(int i=0;i<visited.length;i++)
-     {
-        if(visited[i]==false)
-        {
-            count+=1;
-            bfs(i,queue,visited,adj);
-           
-           
-        }
-     }
-     return count;
+        int m=isConnected.length;
+      
+        Deque<int[]> deque=new ArrayDeque<>();
+        boolean[] visited=new boolean[m];
+        int count=0;
        
-    }
-    public void bfs(int i,Deque<Integer> queue,boolean[] visited,ArrayList<ArrayList<Integer>> adj)
-    {
-        queue.offer(i);
-        visited[i]=true;
-        while(!queue.isEmpty())
+        for(int i=0;i<m;i++)
         {
-            int node=queue.poll();
-            for(int k:adj.get(node))
-            {
-                if(visited[k]==false)
+           
+                if(visited[i]==false)
                 {
-                    queue.offer(k);
-                    visited[k]=true;
+                    dfs(i,isConnected,visited);
+                    count+=1;
                 }
-            }
-         
 
+            
         }
+        return count;
+        
+    }
+
+    public void dfs(int i,int[][] isConnected,boolean[] visited)
+    {
+     
+       visited[i]=true;
+       for(int k=0;k<isConnected.length;k++)
+       {
+        if(!visited[k] && isConnected[i][k]==1) 
+        {    
+
+            visited[k]=true;
+            dfs(k,isConnected,visited);
+        }
+       }
+
+
+
     }
 }
