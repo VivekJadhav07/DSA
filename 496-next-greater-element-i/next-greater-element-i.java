@@ -11,16 +11,17 @@ Deque<Integer> stack=new ArrayDeque<Integer>();
                if(stack.isEmpty())
                {
                map.put(nums2[i],-1);
-                stack.push(nums2[i]);
+               
 
                }else{
                 if(stack.peek()>nums2[i])
                 {
                    
                     map.put(nums2[i],stack.peek());
-                     stack.push(nums2[i]);
+                  
                 }
                }
+                  stack.push(nums2[i]);
               
 
             
