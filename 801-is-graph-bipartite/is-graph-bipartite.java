@@ -26,10 +26,7 @@ class Solution {
            
            
             int node=start;
-            if(color[node]==-1)
-            {
-                color[node]=0;
-            }
+           
             
           
             for(int i:graph[node])
