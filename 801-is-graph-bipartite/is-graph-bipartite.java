@@ -11,7 +11,7 @@ class Solution {
           {
              if(color[i]==-1)
              {
-                  if(bfs(i,color,graph)==false)
+                  if(dfs(i,color,graph)==false)
                   {
                     return false;
                   }
@@ -21,16 +21,15 @@ class Solution {
 
     }
 
-    public boolean bfs(int start,int[] color,int[][] graph)
+    public boolean dfs(int start,int[] color,int[][] graph)
     {
-        Deque<Integer> deque=new ArrayDeque<>();
-         deque.offer(start);
-    
-        while(!deque.isEmpty())
-        {
            
            
-            int node= deque.poll();
+            int node=start;
+            if(color[node]==-1)
+            {
+                color[node]=0;
+            }
             
           
             for(int i:graph[node])
@@ -40,10 +39,18 @@ class Solution {
                 if(color[node]==0)
                 {
                     color[i]=1;
-                    deque.offer(i);
+                    if(!dfs(i,color,graph))
+                    {
+                        return false;
+                    }
+                  
                 }else{
                     color[i]=0;
-                    deque.offer(i);
+                         if(!dfs(i,color,graph))
+                    {
+                        return false;
+                    }
+                  
                 }
               }else if(color[i]==color[node]){
                 return false;
@@ -54,7 +61,7 @@ class Solution {
 
 
 
-        }
+        
         return true;
         
         
