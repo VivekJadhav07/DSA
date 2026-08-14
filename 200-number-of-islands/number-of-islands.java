@@ -1,57 +1,51 @@
 class Solution {
     public int numIslands(char[][] grid) {
-        int m=grid.length;
-        int n=grid[0].length;
-        boolean visited[][]=new boolean[m][n];
-        Deque<int[]> queue=new ArrayDeque<>();
-        int count=0;
-        for(int i=0;i<m;i++)
-        {
-            for(int j=0;j<n;j++)
+     
+     int count=0;
+      for(int i=0;i<grid.length;i++)
+      {
+          for(int j=0;j<grid[0].length;j++)
+          {
+            if(grid[i][j]=='1')
             {
-                if(visited[i][j]==false && grid[i][j]=='1')
-                {
-                    bfs(i,j,grid,queue,visited);
-                    count+=1;
-
-                }
+                count+=1;
+                 bfs(i,j,grid);
             }
-        }
+          }
+      }
+      
+     return count;
 
-        return count;
         
     }
-
-    public void bfs(int i,int j,char[][] grid,Deque<int[]> queue,boolean[][] visited)
+    public void bfs(int r,int c,char[][] grid)
     {
-        int m=grid.length;
-        int n=grid[0].length;
-       int[] dr={-1,0,1,0};
-       int[] dc={0,1,0,-1};
-       queue.offer(new int[]{i,j});
-       while(!queue.isEmpty())
-       {
-         int []curr=queue.poll();
-         int row=curr[0];
-         int col=curr[1];
-
-          for(int k=0;k<4;k++)
+    Deque<int[]> deque=new ArrayDeque<>();
+    deque.offer(new int[]{r,c});
+    int[] dr={-1,0,1,0};
+    int[] dc={0,1,0,-1};
+    while(!deque.isEmpty())
+    {
+        int curr[]=deque.poll();
+        int row=curr[0];
+        int col=curr[1];
+        for(int i=0;i<4;i++)
+        {
+          int rc=row+dr[i];
+          int cc=col+dc[i];
+          if(rc>=0 && rc<grid.length && cc>=0 && cc<grid[0].length && grid[rc][cc]=='1')
           {
-            int rc=row+dr[k];
-            int cc=col+dc[k];
-            if(rc>=0 && rc<m&& cc>=0 && cc<n && visited[rc][cc]==false && grid[rc][cc]=='1')
-            {
-                visited[rc][cc]=true;
-                queue.offer(new int[]{rc,cc});
-            }
+               grid[rc][cc]=0;
+               deque.offer(new int[]{rc,cc});
           }
 
 
+        }
 
 
-       }
 
 
+    }
 
 
 
