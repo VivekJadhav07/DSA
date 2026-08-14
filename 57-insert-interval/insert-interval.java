@@ -1,30 +1,33 @@
 class Solution {
     public int[][] insert(int[][] intervals, int[] newInterval) {
-        ArrayList<int[]> res=new ArrayList<>();
-        int n=intervals.length;
-        int i=0;
-        //left
-        while(i<n && intervals[i][1]<newInterval[0])
+        ArrayList<int[]> list=new ArrayList<>();
+        int k=0;
+        while(k<intervals.length && newInterval[0]>intervals[k][1])
         {
-        res.add(intervals[i]);
-          i+=1;
+           list.add(intervals[k]);
+           k+=1;
         }
-        // int min=intervals[i][0];
-        // int max=intervals[i][1];
-        while(i<n && intervals[i][0]<=newInterval[1])
+          while(k<intervals.length && newInterval[1]>=intervals[k][0])
         {
-                newInterval[0]=Math.min(intervals[i][0],newInterval[0]);
-                newInterval[1]=Math.max(intervals[i][1],newInterval[1]);
-                i+=1;
+           newInterval[0]=Math.min(intervals[k][0],newInterval[0]);
+           newInterval[1]=Math.max(intervals[k][1],newInterval[1]);
+           k+=1;
         }
-        res.add(new int[]{newInterval[0],newInterval[1]});
+        list.add(new int[]{newInterval[0],newInterval[1]});
+         while(k<intervals.length)
+        {
+           list.add(intervals[k]);
+           k+=1;
+        }
+        int res[][]=new int[list.size()][2];
+       for(int i=0;i<list.size();i++)
+       {
+         res[i]=list.get(i);  
 
-        while(i<n )
-        {
-            res.add(intervals[i]);
-            i+=1;
-        }
-return res.toArray(new int[res.size()][2]);
+       }
+       return res;
+       
 
     }
+
 }
