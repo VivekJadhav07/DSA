@@ -17,6 +17,11 @@ class Solution {
             b=b%a;
         }
       }
-        return (a==0)?  b: a;
+      if(a==0)
+      {
+        return b;
+      }else{
+        return a;
+      }
     }
 }
