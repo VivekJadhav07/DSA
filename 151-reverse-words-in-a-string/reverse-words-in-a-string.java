@@ -2,20 +2,17 @@ class Solution {
     public String reverseWords(String s) {
 
         String s1[]=s.trim().split(" ");
-        StringBuilder sb=new StringBuilder();
-        for(int i=s1.length-1;i>=1;i--)
+        String str="";
+        for(int i=s1.length-1;i>0;i--)
         {
-            if(s1[i].equals(""))
+            if(s1[i]=="")
             {
                 continue;
-            }else{
-            sb.append(s1[i]+" ");
             }
+            str+=s1[i]+" ";
         }
-        sb.append(s1[0]);
-        return sb.toString();
-
-        
+       str+=s1[0];
+       return str;
 
 
         
