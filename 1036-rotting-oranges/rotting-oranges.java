@@ -1,69 +1,73 @@
 class Solution {
     public int orangesRotting(int[][] grid) {
-
+        int m=grid.length;
+        int n=grid[0].length;
         int fresh=0;
-        Deque<int []> deque=new ArrayDeque<>();
-        int dr[]={-1,0,1,0};
-        int dc[]={0,1,0,-1};
-        for(int i=0;i<grid.length;i++)
+
+        Deque<int[]> deque=new ArrayDeque<>();
+        for(int i=0;i<m;i++)
         {
-            for(int j=0;j<grid[0].length;j++)
+            for(int j=0;j<n;j++)
             {
-               if(grid[i][j]==2)
-               {
-                deque.offer(new int[]{i,j});
-               }
-               else if(grid[i][j]==1)
-               {
-                fresh+=1;
-               }
+                if(grid[i][j]==2)
+                {
+                    deque.offer(new int[]{i,j});
+                }else if(grid[i][j]==1)
+                {
+                    fresh+=1;
+                }
             }
         }
         if(fresh==0)
         {
             return 0;
         }
-       int time=0;
+        int count=0;
         while(!deque.isEmpty())
         {
+            int dr[]={-1,0,1,0};
+            int dc[]={0,1,0,-1};
             int size=deque.size();
-           
-            int m=grid.length;
-            int n=grid[0].length;
-            boolean rotten=false;
+              boolean rotten=false;
             for(int k=0;k<size;k++)
             {
-            int curr[]=deque.poll();
-            int row=curr[0];
-            int col=curr[1];
-              for(int i=0;i<4;i++)
-              {
-                int rr=row+dr[i];
-                int cc=col+dc[i];
-                if(rr>=0 && rr<m && cc>=0 && cc<n && grid[rr][cc]==1)
+             int curr[]=deque.poll();
+             int r=curr[0];
+             int c=curr[1];
+           
+               for(int i=0;i<4;i++)
+               {
+
+                int rc=r+dr[i];
+                int cc=c+dc[i];
+                if(rc>=0 && rc<grid.length && cc>=0 && cc<grid[0].length
+                 &&
+               grid[rc][cc]==1
+                
+                )
                 {
-                    grid[rr][cc]=2;
-                    deque.offer(new int[]{rr,cc});
-                    fresh-=1;
-                    rotten=true;
+                     deque.offer(new int[]{rc,cc});
+                     grid[rc][cc]=2;
+                     fresh-=1;
+                     rotten=true;
                 }
 
+               }
 
-              }
+               
             }
             if(rotten)
-            {
-                time+=1;
-            }
+               {
+                count+=1;
+               }
+
+
         }
         if(fresh==0)
         {
-        
-
-        return time;
+            return count;
         }
         return -1;
-
 
         
     }
