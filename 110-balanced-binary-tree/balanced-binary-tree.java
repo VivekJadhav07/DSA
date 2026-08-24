@@ -15,34 +15,29 @@
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
-        if(root==null)
-        {
-            return true;
-
-        }
-
-      return fun(root) !=-1;
-      
         
+        if( fun(root) ==-1)
+        {
+            return false;
+        }
+        return true;
     }
     public int fun(TreeNode root)
     {
         if(root==null)
         {
             return 0;
-
         }
-       
+        
+
         int left=fun(root.left);
         int right=fun(root.right);
-
-         if(left==-1 || right==-1) return -1;
-        
-          if(Math.abs(left-right)>1)
-          {
+        if(left==-1 || right==-1) return -1;
+         if(Math.abs(left-right)>1)
+         {
             return -1;
-          }
+         }
         return 1+Math.max(left,right);
+        
     }
-    
 }
