@@ -5,13 +5,11 @@ class Solution:
         for i in s:
             freq[i]=freq.get(i,0)+1
         idx=""
-        for i in freq:
-            if(freq[i]==1):
-                idx=i
-                break
-        for i in range(len(s)):
-            if(s[i]==idx):
+        for i,j in enumerate(s):
+            if(freq[j]==1):
+                
                 return i
+       
         return -1
 
                 
